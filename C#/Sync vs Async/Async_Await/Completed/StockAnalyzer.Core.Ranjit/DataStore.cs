@@ -94,7 +94,7 @@ namespace StockAnalyzer.Core
             var prices = new List<StockPrice>();
 
             using (var stream =
-                new StreamReader(File.OpenRead(Path.Combine(basePath, @"StockPrices_Big.csv"))))
+                new StreamReader(File.OpenRead(Path.Combine(basePath, @"StockPrices_Small.csv"))))
             {
                 await stream.ReadLineAsync(); // Skip headers
 
