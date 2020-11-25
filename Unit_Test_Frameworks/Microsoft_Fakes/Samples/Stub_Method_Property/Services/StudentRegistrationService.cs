@@ -14,7 +14,8 @@ namespace Services
 
         public void RegisterNewStudent(Student student)
         {
-           _studentRepository.Save(student);
+            _studentRepository.IsStudentSaved = true;
+           _studentRepository.Save(student); 
         }
     }
 }

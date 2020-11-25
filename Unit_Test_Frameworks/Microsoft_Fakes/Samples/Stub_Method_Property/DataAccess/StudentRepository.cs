@@ -5,6 +5,8 @@ namespace DataAccess
 {
     public class StudentRepository : IStudentRepository
     {
+        public bool IsStudentSaved { get; set; }
+
         public Student FindById(int id)
         {
             DataCommand someLowLevelDataCommand = new DataCommand();
@@ -20,6 +22,7 @@ namespace DataAccess
 
         public void Save(Student student)
         {
+            IsStudentSaved = true;
             DataCommand someLowLevelDataCommand = new DataCommand();
             someLowLevelDataCommand.ExecuteCommand("Insert into Students(Id, FirstName, LastName)...");
         }
