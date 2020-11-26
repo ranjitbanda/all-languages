@@ -28,6 +28,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="1_StudentRegistrationServiceTests_Test_Interaction_Shims.cs" />
+    <Compile Remove="1_StudentRegistrationServiceTests_Test_Interaction_Stubs_Class.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Fakes\" />
   </ItemGroup>
 

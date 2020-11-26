@@ -26,5 +26,12 @@ namespace DataAccess
             DataCommand someLowLevelDataCommand = new DataCommand();
             someLowLevelDataCommand.ExecuteCommand("Insert into Students(Id, FirstName, LastName)...");
         }
+
+        private void SaveStudentWithID_PrivateMethod__(Student student, int ID)
+        {
+            IsStudentSaved = true;
+            DataCommand someLowLevelDataCommand = new DataCommand();
+            someLowLevelDataCommand.ExecuteCommand("Insert into Students(Id, FirstName, LastName)...");
+        }
     }
 }

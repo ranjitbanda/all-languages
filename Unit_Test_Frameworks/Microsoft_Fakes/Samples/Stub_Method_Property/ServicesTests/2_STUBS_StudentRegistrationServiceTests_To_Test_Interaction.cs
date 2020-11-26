@@ -3,15 +3,16 @@ using DataAccess.Fakes;
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Services;
-using Services.Fakes;
 
 namespace ServicesTests
 {
+    //These tests will test the interaction (1st for method, 2nd for property)
     [TestClass]
-    public class StudentRegistrationServiceTests
+    public class STUBS_StudentRegistrationServiceTests_To_Test_Interaction_2
     {
+        //This is testing the interaction
         [TestMethod]
-        public void RegisterNewStudent_SavesTheStudent_STUB_TO_TEST_METHOD()
+        public void RegisterNewStudent_SavesTheStudent_STUB_TO_TEST_METHOD_INTERACTION()
         {
             bool wasSaveCalled = false; 
             //Stub for student repository interface 
@@ -32,12 +33,12 @@ namespace ServicesTests
         }
 
         [TestMethod]
-        public void RegisterNewStudent_IsStudentSavedSet_STUB_TO_TEST_PROPERTY()
+        public void RegisterNewStudent_IsStudentSavedSet_STUB_TO_TEST_PROPERTY_INTERACTION()
         {
             bool wasIsStudentSavedPropertySet = false;
+
             //Stub for student repository interface 
-            //(As there is no interface for this so we are directly stubbing the class itself)
-            // NOTE - We can stub for StudentRepository class also but is not a good practice
+            // fake implementation for the property below
             IStudentRepository stubStudentRepository = new StubIStudentRepository()
             {
                 IsStudentSavedSetBoolean = (value) => { wasIsStudentSavedPropertySet = true; }
@@ -52,5 +53,9 @@ namespace ServicesTests
             //ASSERT
             Assert.IsTrue(wasIsStudentSavedPropertySet);
         }
+
+
+        //TODO - To return values when method is called
+
     }
 }
