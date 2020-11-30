@@ -100,5 +100,35 @@ namespace CreditCardApplications.Tests
             Assert.Equal(ValidationMode.Detailed, mockValidator.Object.ValidationMode);
         }
 
+        [Fact]
+        public void CheckLicenseKeyForLowIncomeApplications_104_PROPERTY_GET_TIMES_CALLED_104()
+        {
+            var mockValidator = new Mock<IFrequentFlyerNumberValidator>();
+            mockValidator.Setup(x => x.ServiceInformation.License.LicenseKey).Returns("OK");
+
+            var sut = new CreditCardApplicationEvaluatorService(mockValidator.Object);
+
+            var application = new CreditCardApplication { GrossAnnualIncome = 99_000 };
+
+            sut.Evaluate(application);
+            //STEP - Verify Get property call called at least once
+            mockValidator.VerifyGet(x => x.ServiceInformation.License.LicenseKey, Times.Once);
+        }
+
+        [Fact]
+        public void SetDetailedLookupForOlderApplications_105_PROPERTY_SET_TIMES_CALLED_105()
+        {
+            var mockValidator = new Mock<IFrequentFlyerNumberValidator>();
+
+            mockValidator.Setup(x => x.ServiceInformation.License.LicenseKey).Returns("OK");
+
+            var sut = new CreditCardApplicationEvaluatorService(mockValidator.Object);
+
+            var application = new CreditCardApplication { Age = 30 };
+
+            sut.Evaluate(application);
+            //STEP - Verify Set property call called at least once
+            mockValidator.VerifySet(x => x.ValidationMode = It.IsAny<ValidationMode>(), Times.Once);
+        }
     }
 }

@@ -126,5 +126,50 @@ namespace CreditCardApplications.Tests
 
             Assert.Equal(CreditCardApplicationDecision.AutoDeclined, decision);
         }
+
+        [Fact]
+        public void ShouldValidateFrequentFlyerNumberForLowIncomeApplications_05_VERIFY_METHOD_CALL_05()
+        {
+            var mockValidator = new Mock<IFrequentFlyerNumberValidator>();
+
+            var sut = new CreditCardApplicationEvaluatorService(mockValidator.Object);
+
+            var application = new CreditCardApplication { FrequentFlyerNumber = "q" };
+
+            sut.Evaluate(application);
+
+            //SETUP - The following line make sures to test ISVALID method is called
+            // NOTE - though we have not done any setup on this method the below ASSERT worked
+            mockValidator.Verify(x => x.IsValid(It.IsAny<string>()));
+        }
+
+        [Fact]
+        public void NotValidateFrequentFlyerNumberForHighIncomeApplications_06_VERIFY_METHOD_NOT_CALLED_06()
+        {
+            var mockValidator = new Mock<IFrequentFlyerNumberValidator>();
+
+            var sut = new CreditCardApplicationEvaluatorService(mockValidator.Object);
+
+            var application = new CreditCardApplication { GrossAnnualIncome = 100_000 };
+
+            sut.Evaluate(application);
+
+            mockValidator.Verify(x => x.IsValid(It.IsAny<string>()), Times.Never);
+        }
+
+
+        [Fact]
+        public void ValidateFrequentFlyerNumberForLowIncomeApplications_07_VERIFY_METHOD_TIMES_CALLED_07()
+        {
+            var mockValidator = new Mock<IFrequentFlyerNumberValidator>();
+
+            var sut = new CreditCardApplicationEvaluatorService(mockValidator.Object);
+
+            var application = new CreditCardApplication { FrequentFlyerNumber = "q" };
+
+            sut.Evaluate(application);
+
+            mockValidator.Verify(x => x.IsValid(It.IsAny<string>()), Times.Once);
+        }
     }
 }
