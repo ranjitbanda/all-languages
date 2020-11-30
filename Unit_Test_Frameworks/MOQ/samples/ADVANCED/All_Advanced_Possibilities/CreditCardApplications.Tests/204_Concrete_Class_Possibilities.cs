@@ -15,6 +15,9 @@ namespace CreditCardApplications.Tests
             //STEP - setting up the concrete class
             // NOTE - Mock framework works with classes also not only
             //          with interfaces
+
+            //NOTE2 - Also note that the ISFRAUDRISK is virtual meaning that it is overridable
+            //      MOQ only supports OVERRIDABLE methods setups on CONCRETE CLASSES
             Mock<FraudLookup> mockFraudLookup = new Mock<FraudLookup>();
             mockFraudLookup.Setup(x => x.IsFraudRisk(It.IsAny<CreditCardApplication>()))
                            .Returns(true);
