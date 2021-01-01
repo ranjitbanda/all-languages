@@ -15,6 +15,7 @@ namespace StockAnalyzer.Windows
             InitializeComponent();
         }
 
+        //ASYNC keyword is a way for us to indicate that this method here will contain asynchronous operations. 
         private async void Search_Click(object sender, RoutedEventArgs e)
         {
             #region Before loading stock data
@@ -27,6 +28,15 @@ namespace StockAnalyzer.Windows
             #endregion
 
             DataStoreAsync dataStore = new DataStoreAsync(Environment.CurrentDirectory);
+
+            //AWAIT keyword is a way for us to indicate that we want to get back to this part of the code 
+            // once the data is loaded without blocking UI thread.
+
+            // TASKS of AWAIT keyword below
+            // 1. Validate the success of asynchronous operation
+            // 2. Make sures that there are no exceptions in the ASYNCHRONOUS operation
+            // 3. Gives back the potential results
+            // 4. Continuation back on the calling thread.
             var stocksDictionary = await dataStore.LoadStocks();
             Stocks.ItemsSource = stocksDictionary[Ticker.Text];
 
