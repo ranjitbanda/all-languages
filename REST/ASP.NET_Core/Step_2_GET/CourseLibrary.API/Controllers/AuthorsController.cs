@@ -33,21 +33,22 @@ namespace CourseLibrary.API.Controllers
         {
             var authorsFromRepo = _courseLibraryRepository.GetAuthors();
             //////JsonResult is an action result which formats the given object as JSON.
-            return new JsonResult(authorsFromRepo);
-            //return Ok(authorsFromRepo);
+            //return new JsonResult(authorsFromRepo);
+            return Ok(authorsFromRepo);
         }
 
-        ////[HttpGet("{authorId}")]
-        ////public IActionResult GetAuthor(Guid authorId)
-        ////{
-        ////    //var authorFromRepo = _courseLibraryRepository.GetAuthor(authorId);
+        //[HttpGet("{authorId:guid}")]  - with route constraint, if the method have overloading
+        [HttpGet("{authorId}")]
+        public IActionResult GetAuthor(Guid authorId)
+        {
+            var authorFromRepo = _courseLibraryRepository.GetAuthor(authorId);
 
-        ////    //if (authorFromRepo == null)
-        ////    //{
-        ////    //    return NotFound();
-        ////    //}
-             
-        ////    return Ok(null);
-        ////}
+            if (authorFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(authorFromRepo);
+        }
     }
 }
