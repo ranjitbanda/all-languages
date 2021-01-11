@@ -19,7 +19,7 @@ namespace CourseLibrary.API.Services
             );
         Author GetAuthor(Guid authorId);
         //IEnumerable<Author> GetAuthors(IEnumerable<Guid> authorIds);
-        void RestoreDataStore();
+        //void RestoreDataStore();
         void AddAuthor(Author author);
         //void DeleteAuthor(Author author);
         //void UpdateAuthor(Author author);

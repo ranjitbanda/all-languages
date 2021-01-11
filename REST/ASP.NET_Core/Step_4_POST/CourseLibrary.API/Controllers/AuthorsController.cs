@@ -30,7 +30,7 @@ namespace CourseLibrary.API.Controllers
                 throw new ArgumentNullException(nameof(courseLibraryRepository));
             _mapper = mapper ??
                 throw new ArgumentNullException(nameof(mapper));
-            _courseLibraryRepository.RestoreDataStore();
+            //_courseLibraryRepository.RestoreDataStore();
         }
 
         //////To return data, we need to add an action on our controller.

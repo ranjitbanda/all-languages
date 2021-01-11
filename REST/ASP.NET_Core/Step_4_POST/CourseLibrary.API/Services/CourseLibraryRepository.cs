@@ -56,10 +56,10 @@ namespace CourseLibrary.API.Services
             return returnedAuthors;
         }
 
-        public void RestoreDataStore()
-        {
-            _authorData.RestoreDataStore();
-        }
+        //public void RestoreDataStore()
+        //{
+        //    //_authorData.RestoreDataStore();
+        //}
 
 
         public Author GetAuthor(Guid authorId)
@@ -126,6 +126,7 @@ namespace CourseLibrary.API.Services
             foreach (var course in author.Courses)
             {
                 course.Id = Guid.NewGuid();
+                course.AuthorId = author.Id;
             }
 
             _authorData.Authors.Add(author);
