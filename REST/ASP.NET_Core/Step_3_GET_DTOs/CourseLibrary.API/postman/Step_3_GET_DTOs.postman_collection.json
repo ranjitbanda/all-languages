@@ -251,6 +251,88 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "GET Filtered Authors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:51044/api/authors?mainCategory=Rum",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "51044",
+					"path": [
+						"api",
+						"authors"
+					],
+					"query": [
+						{
+							"key": "mainCategory",
+							"value": "Rum"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Searched Authors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:51044/api/authors?searchQuery=a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "51044",
+					"path": [
+						"api",
+						"authors"
+					],
+					"query": [
+						{
+							"key": "searchQuery",
+							"value": "a"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Filtered and Searched Authors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:51044/api/authors?mainCategory=Rum&searchQuery=a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "51044",
+					"path": [
+						"api",
+						"authors"
+					],
+					"query": [
+						{
+							"key": "mainCategory",
+							"value": "Rum"
+						},
+						{
+							"key": "searchQuery",
+							"value": "a"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [

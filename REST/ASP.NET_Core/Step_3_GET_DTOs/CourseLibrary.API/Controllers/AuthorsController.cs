@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CourseLibrary.API.Helpers;
 using CourseLibrary.API.Models;
+using CourseLibrary.API.ResourceParameters;
 using CourseLibrary.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -38,9 +39,17 @@ namespace CourseLibrary.API.Controllers
         [HttpGet()]
         [HttpHead()]
         //public IActionResult GetAuthors()
-        public ActionResult<IEnumerable<AuthorDto>> GetAuthors()
+        public ActionResult<IEnumerable<AuthorDto>> GetAuthors(
+            //[FromQuery]string mainCategory
+            //[FromQuery(Name = "mainCategory")] string mainCategory
+            //string mainCategory,
+            //string searchQuery
+            //BY DEFAULT THE COMPLEX TYPE IS EXPECTED TO BE BIND USING FROMBODY RESOURCE, AS CURRENTLY WE ARE SENDING VIA QUERY PARAMETERS
+            //WE HAVE TO EXPLICITY MENTION AS FROMQUERY TO POPULATE THIS COMPLEX TYPE USING QUERY PARAMETER VALUES
+            [FromQuery]AuthorsResourceParameters authorsResourceParameters
+            )
         {
-            var authorsFromRepo = _courseLibraryRepository.GetAuthors();
+            var authorsFromRepo = _courseLibraryRepository.GetAuthors(authorsResourceParameters);
             //var authors = new List<AuthorDto>();
 
             //foreach (var author in authorsFromRepo)

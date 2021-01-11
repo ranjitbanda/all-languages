@@ -1,5 +1,6 @@
 ﻿using CourseLibrary.API.DataStore;
 using CourseLibrary.API.Entities;
+using CourseLibrary.API.ResourceParameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,40 @@ namespace CourseLibrary.API.Services
         public IEnumerable<Author> GetAuthors()
         {
             return _authorData.GetAuthors();
+        }
+        public IEnumerable<Author> GetAuthors(
+            //string mainCategory, string SearchQuery
+            AuthorsResourceParameters authorsResourceParameters
+            )
+        {
+            IEnumerable<Author> returnedAuthors = null;
+
+            returnedAuthors = _authorData.GetAuthors();
+
+            //if (string.IsNullOrWhiteSpace(authorsResourceParameters.MainCategory)
+            //    && string.IsNullOrWhiteSpace(authorsResourceParameters.SearchQuery))
+            //{
+            //}
+            //else
+            //{
+                if (!string.IsNullOrWhiteSpace(authorsResourceParameters.MainCategory))
+                {
+                    authorsResourceParameters.MainCategory = authorsResourceParameters.MainCategory.Trim();
+                    returnedAuthors = returnedAuthors.Where(x => x.MainCategory == authorsResourceParameters.MainCategory).ToList();
+                }
+
+            if (!string.IsNullOrWhiteSpace(authorsResourceParameters.SearchQuery))
+            {
+                authorsResourceParameters.MainCategory = authorsResourceParameters.SearchQuery.Trim();
+                returnedAuthors = returnedAuthors.Where(x => x.MainCategory.Contains(authorsResourceParameters.SearchQuery)
+                || x.FirstName.Contains(authorsResourceParameters.SearchQuery)
+                || x.LastName.Contains(authorsResourceParameters.SearchQuery)
+                ).ToList();
+            }
+            //}
+
+
+            return returnedAuthors;
         }
 
         public void RestoreDataStore()
