@@ -18,7 +18,7 @@ namespace CourseLibrary.API.Services
             AuthorsResourceParameters authorsResourceParameters
             );
         Author GetAuthor(Guid authorId);
-        //IEnumerable<Author> GetAuthors(IEnumerable<Guid> authorIds);
+        IEnumerable<Author> GetAuthors(IEnumerable<Guid> authorIds);
         //void RestoreDataStore();
         void AddAuthor(Author author);
         //void DeleteAuthor(Author author);
